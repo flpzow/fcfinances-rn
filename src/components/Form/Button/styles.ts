@@ -16,5 +16,4 @@ export const Title = styled.Text`
   font-size: ${RFValue(14)}px;
 
   color: ${({ theme }) => theme.colors.shape};
-
 `;
