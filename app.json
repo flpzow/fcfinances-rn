@@ -2,6 +2,7 @@
   "expo": {
     "name": "fcfinances",
     "slug": "fcfinances",
+    "scheme": "fcfinances",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"

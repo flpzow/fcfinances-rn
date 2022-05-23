@@ -17,6 +17,11 @@ import theme from './src/global/styles/theme';
 
 import { AppRoutes } from './src/routes/app.routes';
 
+import { SignIn } from './src/screens/SignIn'
+
+import { AuthProvider } from './src/hooks/auth';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
@@ -29,12 +34,18 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <NavigationContainer>
-        <StatusBar barStyle="light-content" />
-        <AppRoutes />
-      </NavigationContainer>
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ThemeProvider theme={theme}>
+        <NavigationContainer>
+          <StatusBar barStyle="light-content" />
+
+          <AuthProvider>
+            <SignIn />
+          </AuthProvider>
+
+        </NavigationContainer>
+      </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }
 
