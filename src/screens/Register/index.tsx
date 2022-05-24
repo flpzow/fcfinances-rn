@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useForm } from 'react-hook-form';
 import { useNavigation, NavigationProp, ParamListBase } from '@react-navigation/native';
+import { useAuth } from '../../hooks/auth';
 
 import { Button } from '../../components/Form/Button';
 import { CategorySelectButton } from '../../components/Form/CategorySelectButton';
@@ -28,6 +29,7 @@ import {
   Fields,
   TransactionsTypes,
 } from './styles';
+
 
 
 interface FormData {
@@ -47,6 +49,8 @@ const schema = Yup.object().shape({
 export function Register() {
   const [transactionType, setTransactionType] = useState('');
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
+
+  const { user } = useAuth();
 
   const [category, setCategory] = useState({
     key: 'category',
@@ -96,7 +100,7 @@ export function Register() {
     }
 
     try {
-      const dataKey = '@fcfinances:transactions';
+      const dataKey = `@fcfinances:transactions_user:${user.id}`;
 
       const data = await AsyncStorage.getItem(dataKey);
 
